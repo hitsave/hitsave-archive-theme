@@ -1,5 +1,5 @@
 #!/bin/sh
-# Build HitSaveArchive from Foundation + themes/hitsave-archive-overlay (Omeka S theme dir name = folder name).
+# Build HitSaveArchive from Foundation S + overlay (Omeka theme dir name = output folder name).
 set -eu
 
 FOUNDATION="${1:?foundation theme path}"
@@ -17,7 +17,20 @@ fi
 
 rm -rf "$OUT"
 cp -a "$FOUNDATION" "$OUT"
-cp -a "$OVERLAY/." "$OUT/"
+if command -v rsync >/dev/null 2>&1; then
+  rsync -a \
+    --exclude='HitSaveArchive/' \
+    --exclude='foundation-theme/' \
+    --exclude='.git/' \
+    --exclude='scripts/' \
+    --exclude='examples/' \
+    --exclude='.gitignore' \
+    --exclude='README.md' \
+    --exclude='config/foundation-theme-upstream.yml' \
+    "$OVERLAY/" "$OUT/"
+else
+  cp -a "$OVERLAY/." "$OUT/"
+fi
 
 THEME_INI="$OUT/config/theme.ini"
 if [ ! -f "$THEME_INI" ]; then
