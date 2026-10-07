@@ -4,7 +4,10 @@ $href = $vars['href'] ?? ($this->themeSetting('hitsave_org_url') ?: 'https://hit
 $class = $vars['class'] ?? 'hitsave-wordmark';
 $linkClass = $vars['linkClass'] ?? 'hitsave-wordmark-link';
 $logoUrl = $this->themeSetting('hitsave_logo_url');
-$src = ($logoUrl && is_string($logoUrl) && $logoUrl !== '')
+$useOverride = is_string($logoUrl)
+    && $logoUrl !== ''
+    && preg_match('#^(https?://|/)#', $logoUrl);
+$src = $useOverride
     ? $logoUrl
     : $this->assetUrl('img/hit-save-wordmark.png');
 ?>
