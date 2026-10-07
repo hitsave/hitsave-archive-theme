@@ -47,7 +47,7 @@ sed -i \
   -e 's/^name = "Foundation"/name = "Hit Save Archive"/' \
   -e 's/^author = .*/author = "Hit Save! (overlay); Foundation S by Omeka Team"/' \
   -e 's|^theme_link = .*|theme_link = "https://github.com/omeka-s-themes/foundation"|' \
-  -e "s/^description = .*/description = \"Hit Save Archive: Foundation S ${FOUNDATION_REF:-(see FOUNDATION_S_GIT_REF)} overlay (GPL-3.0). See https:\/\/github.com\/jonasrosland\/hitsave-archive-theme.\"/" \
+  -e "s/^description = .*/description = \"Hit Save Archive: Foundation S ${FOUNDATION_REF:-(see FOUNDATION_S_GIT_REF)} overlay (GPL-3.0). See https:\/\/github.com\/hitsave\/hitsave-archive-theme.\"/" \
   "$THEME_INI"
 
 if [ -f "$OVERLAY/config/theme-hitsave-elements.ini" ]; then

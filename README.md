@@ -18,7 +18,7 @@ See [COPYING.md](COPYING.md) for attribution and redistribution notes.
 ## Build the installable theme
 
 ```bash
-git clone https://github.com/jonasrosland/hitsave-archive-theme.git
+git clone https://github.com/hitsave/hitsave-archive-theme.git
 cd hitsave-archive-theme
 
 git clone --depth 1 --branch "$(tr -d ' \n\r' < FOUNDATION_S_GIT_REF)" \
