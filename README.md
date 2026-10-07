@@ -17,11 +17,10 @@ See [COPYING.md](COPYING.md) for attribution and redistribution notes.
 
 ## Build the installable theme
 
-1. Clone [Foundation S](https://github.com/omeka-s-themes/foundation) at the tag in **`FOUNDATION_S_GIT_REF`** (or let your CI fetch it).
-
-2. From this repository root:
-
 ```bash
+git clone https://github.com/jonasrosland/hitsave-archive-theme.git
+cd hitsave-archive-theme
+
 git clone --depth 1 --branch "$(tr -d ' \n\r' < FOUNDATION_S_GIT_REF)" \
   https://github.com/omeka-s-themes/foundation.git foundation-theme
 
@@ -31,7 +30,7 @@ git clone --depth 1 --branch "$(tr -d ' \n\r' < FOUNDATION_S_GIT_REF)" \
   .
 ```
 
-3. Copy **`HitSaveArchive`** into your Omeka S `themes/` directory and activate **Hit Save Archive** for your site.
+Copy **`HitSaveArchive`** into your Omeka S `themes/` directory and activate **Hit Save Archive** for your site.
 
 The output folder name becomes the theme id Omeka sees (`HitSaveArchive`).
 
