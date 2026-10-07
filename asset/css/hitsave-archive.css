@@ -1,0 +1,839 @@
+:root {
+  /* hitsave.org Ghost palette (teal-forward, not gold/brown) */
+  --hs-teal: #00bec1;
+  --hs-teal-dark: #00a1ba;
+  --hs-purple: #6d327c;
+  --hs-green: #32b37b;
+  --hs-bar-bg: #222228;
+  --hs-footer-bg: #1c1c22;
+  --hs-bar-fg: #f4f4f4;
+  --hs-bar-muted: #a8a8b3;
+  --hs-accent: var(--hs-teal);
+  --hs-accent-alt: var(--hs-purple);
+  --hs-tile-bg: var(--hs-surface-raised, #fff);
+  --hs-tile-border: var(--hs-surface-border, #d4d4dc);
+  --hs-hub-bg: linear-gradient(
+    128deg,
+    #1a1a22 0%,
+    #2d1f4e 38%,
+    #0a4a52 72%,
+    #152a24 100%
+  );
+  --hs-content-bg: #131318;
+  --hs-content-fg: #e8e8ee;
+  --hs-surface: #1e1e26;
+  --hs-surface-raised: #252530;
+  --hs-surface-border: rgba(255, 255, 255, 0.1);
+  --hs-brand-stripe: linear-gradient(
+    90deg,
+    var(--hs-purple) 0%,
+    var(--hs-teal) 50%,
+    var(--hs-green) 100%
+  );
+}
+
+body.hitsave-chrome {
+  background: var(--hs-content-bg);
+}
+
+/* —— Unified site chrome (one block, not a strip + Foundation bar) —— */
+.hitsave-site-chrome {
+  position: relative;
+  z-index: 200;
+  background: var(--hs-bar-bg);
+  color: var(--hs-bar-fg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.hitsave-site-chrome .hitsave-family-bar {
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9375rem;
+}
+
+.hitsave-family-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1.25rem;
+  padding: 0.65rem 1.25rem;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.hitsave-family-bar a {
+  color: var(--hs-bar-muted);
+  text-decoration: none;
+}
+
+.hitsave-family-bar a:hover,
+.hitsave-family-bar a:focus {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.hitsave-family-bar__brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--hs-bar-fg) !important;
+}
+
+.hitsave-wordmark-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0;
+}
+
+.hitsave-wordmark-link:hover,
+.hitsave-wordmark-link:focus {
+  opacity: 0.92;
+}
+
+.hitsave-wordmark {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 1.75rem;
+  max-width: 7rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.hitsave-wordmark--chrome {
+  max-height: 1.65rem;
+  max-width: 6.75rem;
+}
+
+.hitsave-wordmark--archive-row {
+  max-height: 1.4rem;
+  max-width: 5.75rem;
+}
+
+.hitsave-site-brand__link--archive {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+}
+
+.hitsave-site-brand__archive-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--hs-teal);
+  line-height: 1.2;
+}
+
+.hitsave-family-bar__sep {
+  color: rgba(255, 255, 255, 0.2);
+  user-select: none;
+}
+
+.hitsave-family-bar__archive,
+.hitsave-family-bar__current {
+  color: var(--hs-accent);
+  font-weight: 600;
+}
+
+.hitsave-family-bar__archive {
+  text-decoration: none;
+}
+
+.hitsave-family-bar__archive:hover,
+.hitsave-family-bar__archive:focus {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.hitsave-family-bar__support {
+  color: var(--hs-accent) !important;
+  font-weight: 600;
+}
+
+.hitsave-primary-bar .hitsave-top-bar {
+  background: transparent;
+  padding: 1rem 1.25rem 1.35rem;
+  flex-wrap: wrap;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.hitsave-site-brand__link {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.hitsave-site-brand__link:hover,
+.hitsave-site-brand__link:focus {
+  color: #fff;
+  opacity: 0.95;
+}
+
+.hitsave-site-brand__text {
+  display: block;
+  line-height: 1.15;
+}
+
+.hitsave-site-brand__text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.hitsave-chrome .top-bar,
+.hitsave-chrome .top-bar ul {
+  background: transparent;
+}
+
+.hitsave-chrome .top-bar .menu a,
+.hitsave-chrome .top-bar .menu .is-dropdown-submenu a {
+  color: var(--hs-bar-fg);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.65rem 0.85rem;
+}
+
+.hitsave-chrome .top-bar .menu a:hover,
+.hitsave-chrome .top-bar .menu a:focus {
+  color: var(--hs-accent);
+}
+
+.hitsave-chrome .top-bar .menu .is-active > a {
+  color: var(--hs-accent);
+}
+
+.hitsave-header-search .search-form {
+  margin: 0;
+}
+
+.hitsave-header-search .input-group-field {
+  background: var(--hs-header-search-bg, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--hs-header-search-border, rgba(255, 255, 255, 0.15));
+  color: var(--hs-header-search-fg, #fff);
+  min-width: 14rem;
+  font-size: 1rem;
+  padding: 0.65rem 0.85rem;
+  min-height: 2.75rem;
+  transition: none;
+}
+
+.hitsave-header-search .input-group-field::placeholder {
+  color: var(--hs-header-search-placeholder, rgba(255, 255, 255, 0.45));
+  opacity: 1;
+}
+
+.hitsave-header-search .button {
+  background: var(--hs-teal);
+  color: #0d1a1a;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.65rem 1.1rem;
+  min-height: 2.75rem;
+}
+
+.hitsave-header-search .button:hover,
+.hitsave-header-search .button:focus {
+  background: var(--hs-teal-dark);
+}
+
+.hitsave-top-bar-right {
+  align-items: center;
+}
+
+@media screen and (max-width: 639px) {
+  .hitsave-site-brand__vault {
+    font-size: 1.35rem;
+  }
+
+  /* One row: hamburger + search (override Foundation top-bar stack). */
+  body.hitsave-chrome .hitsave-primary-bar .hitsave-top-bar.top-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.75rem 0.6rem;
+  }
+
+  body.hitsave-chrome .hitsave-primary-bar .top-bar-left {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+  }
+
+  body.hitsave-chrome .hitsave-primary-bar .hitsave-top-bar-right.top-bar-right {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto !important;
+    max-width: none;
+  }
+
+  body.hitsave-chrome .hitsave-nav-dropdown {
+    display: flex;
+    align-items: center;
+  }
+
+  body.hitsave-chrome .hitsave-menu-toggle.title-bar {
+    margin-right: 0;
+    padding: 0;
+  }
+
+  body.hitsave-chrome .hitsave-menu-toggle .menu-toggle {
+    padding: 0.35rem 0.45rem;
+  }
+
+  body.hitsave-chrome .hitsave-header-search {
+    width: 100%;
+    min-width: 0;
+  }
+
+  body.hitsave-chrome .hitsave-header-search .input-group {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 0;
+  }
+
+  body.hitsave-chrome .hitsave-header-search .input-group-field {
+    min-width: 0;
+    flex: 1 1 auto;
+    font-size: 0.9375rem;
+    padding: 0.5rem 0.65rem;
+    min-height: 2.5rem;
+  }
+
+  body.hitsave-chrome .hitsave-header-search .button {
+    flex: 0 0 auto;
+    padding: 0.5rem 0.85rem;
+    min-height: 2.5rem;
+    font-size: 0.9375rem;
+  }
+
+  body.hitsave-chrome:not(.hitsave-homepage) #content > h2,
+  body.hitsave-chrome:not(.hitsave-homepage) #content .resource-title {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  body.hitsave-chrome:not(.hitsave-homepage) #content .stack,
+  body.hitsave-chrome:not(.hitsave-homepage) #content .hitsave-citation {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  body.hitsave-chrome:not(.hitsave-homepage) #content .grid-x.grid-margin-x {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* —— Discovery hub (homepage) —— */
+.hitsave-hub {
+  background: var(--hs-hub-bg);
+  color: #fff;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 2.75rem 0 3.5rem;
+  box-sizing: border-box;
+}
+
+.hitsave-hub__inner {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.hitsave-hub__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hs-accent);
+}
+
+.hitsave-hub__hero h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  max-width: 22rem;
+}
+
+.hitsave-hub__lead {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  max-width: 42rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hitsave-hub__search {
+  margin: 2rem 0 2.5rem;
+  max-width: 36rem;
+}
+
+.hitsave-hub-search-form__group {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.hitsave-hub-search-form__group .input-group-field {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  height: auto;
+  font-size: 1.05rem;
+  padding: 0.85rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-right: none;
+  border-radius: 0.35rem 0 0 0.35rem;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+}
+
+.hitsave-hub-search-form__group .input-group-field:focus {
+  border-color: var(--hs-teal);
+  box-shadow: 0 0 0 2px rgba(0, 190, 193, 0.45);
+}
+
+.hitsave-hub-search-form__group .input-group-button {
+  display: flex;
+  flex: 0 0 auto;
+  margin: 0;
+  width: auto;
+}
+
+.hitsave-hub-search-form__submit {
+  margin: 0;
+  height: 100%;
+  align-self: stretch;
+  border-radius: 0 0.35rem 0.35rem 0;
+  border: 2px solid var(--hs-teal);
+  border-left: none;
+  background: var(--hs-teal);
+  color: #0d1a1a;
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  padding: 0.85rem 1.35rem;
+  white-space: nowrap;
+}
+
+.hitsave-hub-search-form__submit:hover,
+.hitsave-hub-search-form__submit:focus {
+  background: var(--hs-teal-dark);
+}
+
+.hitsave-hub__collections-heading {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hitsave-hub .hitsave-tile {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-left-width: 4px;
+  color: #fff;
+  height: 100%;
+  min-height: 6.5rem;
+}
+
+.hitsave-hub__tiles .cell:nth-child(1) .hitsave-tile {
+  border-left-color: var(--hs-purple);
+}
+
+.hitsave-hub__tiles .cell:nth-child(2) .hitsave-tile {
+  border-left-color: var(--hs-teal);
+}
+
+.hitsave-hub__tiles .cell:nth-child(3) .hitsave-tile {
+  border-left-color: var(--hs-green);
+}
+
+.hitsave-hub__tiles .cell:nth-child(4) .hitsave-tile {
+  border-left-color: #485da6;
+}
+
+.hitsave-hub .hitsave-tile:hover,
+.hitsave-hub .hitsave-tile:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.hitsave-hub .hitsave-tile__hint {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+body.hitsave-chrome #content {
+  background: var(--hs-content-bg);
+}
+
+/* Browse / collection toolbars (Foundation defaults read as a second menu bar). */
+body.hitsave-chrome #content > h2 {
+  max-width: 75rem;
+  margin: 1.25rem auto 0.75rem;
+  padding: 0 1.25rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+  border: none;
+}
+
+body.hitsave-chrome:not(.hitsave-homepage) #content .resource-title h2,
+body.hitsave-chrome:not(.hitsave-homepage) #content .resource-title .title {
+  font-size: 1.875rem;
+  line-height: 1.2;
+}
+
+body.hitsave-chrome .browse-controls.top {
+  max-width: 75rem;
+  margin: 0 auto 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--hs-bar-bg);
+  color: var(--hs-bar-fg);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.hitsave-chrome .browse-controls a,
+body.hitsave-chrome .browse-controls .row-count,
+body.hitsave-chrome .browse-controls .page-count {
+  color: var(--hs-bar-muted);
+}
+
+body.hitsave-chrome .browse-controls .button,
+body.hitsave-chrome .browse-controls button[type="submit"] {
+  background: var(--hs-teal);
+  color: #0d1a1a;
+  font-weight: 700;
+}
+
+body.hitsave-chrome .browse-control-mobile .browse-toggle {
+  background: var(--hs-bar-bg);
+  color: var(--hs-bar-fg);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  margin: 0.75rem 1.25rem 0;
+}
+
+/* Homepage: hub fills viewport between chrome and footer (no light-gray band). */
+body.hitsave-homepage.hitsave-chrome {
+  background: var(--hs-footer-bg);
+}
+
+body.hitsave-homepage .off-canvas-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Foundation #content is flex with align-items:flex-start — that shrinks column children to ~min-content width. */
+body.hitsave-homepage #content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+body.hitsave-homepage .hitsave-hub {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  margin-bottom: 0;
+  padding-bottom: 3rem;
+  min-height: 0;
+}
+
+/* Mirrored intro blocks live under .blocks-inner; hide the whole section when the hub replaces them. */
+body.hitsave-hide-legacy-intro .hitsave-homepage-blocks {
+  display: none;
+}
+
+/* Site menu lives in off-canvas (no second Foundation dropdown row). */
+body.hitsave-chrome .hitsave-top-bar-right > .menu,
+body.hitsave-chrome .hitsave-top-bar-right > ul.menu,
+body.hitsave-chrome .hitsave-top-bar-right .dropdown.menu {
+  display: none !important;
+}
+
+body.hitsave-chrome .hitsave-menu-toggle.title-bar {
+  display: flex !important;
+  align-items: center;
+  margin-right: 0.75rem;
+}
+
+body.hitsave-chrome .hitsave-menu-toggle .menu-toggle {
+  color: var(--hs-bar-fg);
+  font-size: 1.25rem;
+  padding: 0.35rem 0.5rem;
+}
+
+/* Foundation left drawer unused — menu drops from header (hitsave / preserve.games style). */
+body.hitsave-chrome #offCanvas.hitsave-off-canvas {
+  display: none !important;
+}
+
+.hitsave-nav-dropdown {
+  position: relative;
+  z-index: 220;
+}
+
+.hitsave-nav-panel {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  right: auto;
+  width: min(20rem, calc(100vw - 2.5rem));
+  z-index: 220;
+  background: var(--hs-bar-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.35rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  pointer-events: none;
+  transition: max-height 0.28s ease, opacity 0.18s ease, visibility 0.18s;
+}
+
+.hitsave-nav-dropdown.hitsave-nav-open .hitsave-nav-panel {
+  max-height: min(70vh, 24rem);
+  opacity: 1;
+  visibility: visible;
+  overflow-y: auto;
+  pointer-events: auto;
+}
+
+.hitsave-nav-panel__inner {
+  padding: 0.85rem 1rem 1rem;
+}
+
+.hitsave-nav-panel__heading {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hs-bar-muted);
+}
+
+.hitsave-nav-panel .menu.vertical {
+  margin: 0;
+  background: transparent;
+}
+
+.hitsave-nav-panel .menu.vertical a,
+.hitsave-nav-panel .menu.vertical .nav-header {
+  color: var(--hs-bar-fg);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hitsave-nav-panel .menu.vertical a:hover,
+.hitsave-nav-panel .menu.vertical a:focus,
+.hitsave-nav-panel .menu.vertical .active > a {
+  color: var(--hs-teal);
+}
+
+.hitsave-site-chrome.hitsave-nav-open .hitsave-nav-toggle .fa-bars::before {
+  content: "\f00d";
+}
+
+/* Family bar already has wordmark + “The Archive”; avoid repeating them in the row below. */
+body.hitsave-chrome .hitsave-site-brand {
+  display: none;
+}
+
+body.hitsave-chrome .hitsave-primary-bar .hitsave-top-bar {
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.hitsave-chrome .hitsave-top-bar-right {
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+body.hitsave-homepage .hitsave-primary-bar .hitsave-top-bar {
+  padding-top: 0.75rem;
+  padding-bottom: 1.1rem;
+}
+
+body.hitsave-homepage .hitsave-homepage-blocks {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+}
+
+/* —— Footer & citation (inner pages) —— */
+body.hitsave-chrome .off-canvas-content > footer {
+  background: var(--hs-footer-bg);
+  color: var(--hs-bar-fg);
+  margin-top: 0;
+  padding: 0;
+  border: none;
+}
+
+.hitsave-site-footer {
+  padding: 1.75rem 1rem 2.25rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  background: transparent;
+  border-top: 4px solid transparent;
+  border-image: var(--hs-brand-stripe) 1;
+}
+
+body.hitsave-homepage .hitsave-site-footer {
+  margin-top: 0;
+}
+
+.hitsave-site-footer__mission {
+  max-width: 42rem;
+  margin-bottom: 1.25rem;
+  color: var(--hs-bar-muted);
+  line-height: 1.55;
+}
+
+.hitsave-site-footer__mission a {
+  color: var(--hs-teal);
+}
+
+.hitsave-site-footer__family {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.hitsave-site-footer__family a {
+  font-weight: 600;
+  color: var(--hs-bar-fg);
+  text-decoration: none;
+}
+
+.hitsave-site-footer__family a:hover,
+.hitsave-site-footer__family a:focus {
+  color: var(--hs-teal);
+  text-decoration: underline;
+}
+
+.hitsave-citation {
+  background: var(--hs-tile-bg);
+  border: 1px solid var(--hs-tile-border);
+  border-left: 4px solid var(--hs-accent);
+  padding: 1rem 1.25rem;
+  margin: 0 0 1.5rem;
+  max-width: 48rem;
+}
+
+.hitsave-citation h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1.125rem;
+  line-height: 1.35;
+}
+
+.hitsave-citation dl {
+  margin: 0;
+}
+
+.hitsave-citation dt {
+  font-weight: 700;
+  font-size: 1.0625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+}
+
+.hitsave-citation dd {
+  margin: 0 0 0.75rem;
+  font-family: ui-monospace, monospace;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  word-break: break-all;
+}
+
+.hitsave-citation dd:last-child {
+  margin-bottom: 0;
+}
+
+/* Browse grids: cap item descriptions (Foundation "ellipsis" = 4 lines + …) */
+body.hitsave-chrome.resource.browse .resource-meta .description.ellipsis,
+body.hitsave-chrome .preview-block .resource-meta .description.ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
+
+/* DIP collage / fallback previews on browse & search grids only */
+body.hitsave-chrome .resource-grid img.omeka-dip-browse-preview,
+body.hitsave-chrome .resource-list img.omeka-dip-browse-preview,
+body.hitsave-chrome .preview-block img.omeka-dip-browse-preview,
+body.hitsave-chrome img.thumbnail.omeka-dip-browse-preview {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  background: transparent;
+  /* Foundation .thumbnail uses 4px border + ring shadow; keep a light 1px edge. */
+  border: 1px solid var(--hs-surface-border);
+  box-shadow: none;
+  margin-bottom: 0;
+  line-height: 0;
+}
+
+.hitsave-tiles {
+  margin: 1.5rem 0 2rem;
+}
+
+.hitsave-tile {
+  display: block;
+  background: var(--hs-tile-bg);
+  border: 1px solid var(--hs-tile-border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.hitsave-tile:hover,
+.hitsave-tile:focus {
+  border-color: var(--hs-accent);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.hitsave-tile__label {
+  display: block;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.hitsave-tile__hint {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: #555;
+}

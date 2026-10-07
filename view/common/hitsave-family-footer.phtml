@@ -1,0 +1,21 @@
+<?php
+$escape = $this->plugin('escapeHtml');
+$org = $this->themeSetting('hitsave_org_url') ?: 'https://hitsave.org';
+$preserve = $this->themeSetting('hitsave_preserve_url') ?: 'https://preserve.games';
+$support = $this->themeSetting('hitsave_support_url') ?: 'https://hitsave.org/support-us/';
+$involved = $this->themeSetting('hitsave_get_involved_url') ?: 'https://forms.gle/uwnWEPmyrpgiz3AGA';
+$footerContent = $this->themeSetting('footer');
+?>
+<div class="hitsave-site-footer grid-container">
+    <?php if ($footerContent): ?>
+    <div class="hitsave-site-footer__mission"><?php echo $footerContent; ?></div>
+    <?php else: ?>
+    <div class="hitsave-site-footer__mission"><?php echo $this->translate('Powered by Omeka S'); ?></div>
+    <?php endif; ?>
+    <div class="hitsave-site-footer__family">
+        <a href="<?php echo $escape($org); ?>">hitsave.org</a>
+        <a href="<?php echo $escape($preserve); ?>">preserve.games</a>
+        <a href="<?php echo $escape($support); ?>"><?php echo $this->translate('Support preservation'); ?></a>
+        <a href="<?php echo $escape($involved); ?>"><?php echo $this->translate('Get involved'); ?></a>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+# Upstream Omeka S Foundation theme pin for HitSaveArchive.
+# Keep git_ref in sync with FOUNDATION_S_GIT_REF at repo root.
+foundation_theme:
+  name: Foundation
+  repository: https://github.com/omeka-s-themes/foundation
+  git_ref: v1.5.3
+  version: "1.5.3"
+  license: GPL-3.0-or-later
+  license_text: https://www.gnu.org/licenses/gpl-3.0.html
+  upstream_readme: https://github.com/omeka-s-themes/foundation/blob/v1.5.3/README.md

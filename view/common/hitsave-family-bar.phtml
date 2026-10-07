@@ -1,0 +1,24 @@
+<?php
+$escape = $this->plugin('escapeHtml');
+$org = $this->themeSetting('hitsave_org_url') ?: 'https://hitsave.org';
+$preserve = $this->themeSetting('hitsave_preserve_url') ?: 'https://preserve.games';
+$support = $this->themeSetting('hitsave_support_url') ?: 'https://hitsave.org/support-us/';
+$archiveLabel = $this->themeSetting('hitsave_archive_label') ?: 'The Archive';
+$archiveHome = isset($site) ? $site->url() : '/';
+?>
+<nav class="hitsave-family-bar" aria-label="<?php echo $escape($this->translate('Hit Save family sites')); ?>">
+    <div class="hitsave-family-bar__inner grid-container">
+        <?php echo $this->partial('common/hitsave-wordmark', [
+            'href' => $org,
+            'linkClass' => 'hitsave-family-bar__brand hitsave-wordmark-link',
+            'class' => 'hitsave-wordmark hitsave-wordmark--chrome',
+        ]); ?>
+        <span class="hitsave-family-bar__sep" aria-hidden="true">|</span>
+        <a class="hitsave-family-bar__archive" href="<?php echo $escape($archiveHome); ?>"><?php echo $escape($archiveLabel); ?></a>
+        <span class="hitsave-family-bar__sep" aria-hidden="true">|</span>
+        <a class="hitsave-family-bar__support" href="<?php echo $escape($support); ?>"><?php echo $this->translate('Support us'); ?></a>
+        <span class="hitsave-family-bar__sep" aria-hidden="true">|</span>
+        <a href="<?php echo $escape($preserve); ?>"><?php echo $this->translate('Preserve Games'); ?></a>
+        <?php echo $this->partial('common/hitsave-theme-toggle'); ?>
+    </div>
+</nav>

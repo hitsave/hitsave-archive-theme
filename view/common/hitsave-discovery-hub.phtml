@@ -1,0 +1,52 @@
+<?php
+$escape = $this->plugin('escapeHtml');
+$translate = $this->plugin('translate');
+$heroTitle = $this->themeSetting('hitsave_hero_title') ?: 'Explore the collection';
+$heroTagline = $this->themeSetting('hitsave_hero_tagline')
+    ?: 'Search press kits, magazines, tapes, and other materials from our physical and digital vaults.';
+$siteBase = rtrim($site->url(), '/');
+$tiles = [
+    [
+        'label' => $translate('Press & marketing'),
+        'hint' => $translate('Flyers, ads, pack-in art'),
+        'href' => $siteBase . '/page/press-material',
+    ],
+    [
+        'label' => $translate('VHS tapes'),
+        'hint' => $translate('Search the catalog'),
+        'href' => $siteBase . '/item?fulltext_search=VHS',
+    ],
+    [
+        'label' => $translate('Browse everything'),
+        'hint' => $translate('All public items'),
+        'href' => $siteBase . '/item',
+    ],
+    [
+        'label' => $translate('Get involved'),
+        'hint' => $translate('Volunteer with us'),
+        'href' => $this->themeSetting('hitsave_get_involved_url') ?: 'https://forms.gle/uwnWEPmyrpgiz3AGA',
+    ],
+];
+?>
+<section class="hitsave-hub" aria-labelledby="hitsave-hub-title">
+    <div class="hitsave-hub__inner grid-container">
+        <div class="hitsave-hero hitsave-hub__hero">
+            <h1 id="hitsave-hub-title"><?php echo $escape($heroTitle); ?></h1>
+            <p class="hitsave-hub__lead"><?php echo $escape($heroTagline); ?></p>
+        </div>
+        <div class="hitsave-hub__search">
+            <?php echo $this->partial('common/hitsave-hub-search-form'); ?>
+        </div>
+        <h2 class="hitsave-hub__collections-heading"><?php echo $escape($translate('Start exploring')); ?></h2>
+        <div class="hitsave-tiles grid-x grid-margin-x small-up-1 medium-up-2 large-up-4 hitsave-hub__tiles">
+            <?php foreach ($tiles as $tile): ?>
+            <div class="cell">
+                <a class="hitsave-tile" href="<?php echo $escape($tile['href']); ?>">
+                    <span class="hitsave-tile__label"><?php echo $escape($tile['label']); ?></span>
+                    <span class="hitsave-tile__hint"><?php echo $escape($tile['hint']); ?></span>
+                </a>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>

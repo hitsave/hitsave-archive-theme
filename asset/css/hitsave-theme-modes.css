@@ -1,0 +1,507 @@
+/* Site-wide dark / light (html[data-hitsave-theme=…]). Default: dark. */
+
+html[data-hitsave-theme="dark"] {
+  --hs-teal: #00bec1;
+  --hs-teal-dark: #00a1ba;
+  --hs-link-hover: #7ef0f2;
+  --hs-header-search-bg: rgba(255, 255, 255, 0.08);
+  --hs-header-search-border: rgba(255, 255, 255, 0.15);
+  --hs-header-search-fg: #fff;
+  --hs-header-search-placeholder: rgba(255, 255, 255, 0.45);
+  --hs-bar-bg: #222228;
+  --hs-footer-bg: #1c1c22;
+  --hs-bar-fg: #f4f4f4;
+  --hs-bar-muted: #a8a8b3;
+  --hs-content-bg: #131318;
+  --hs-content-fg: #e8e8ee;
+  --hs-content-muted: #b4b4bf;
+  --hs-surface: #1e1e26;
+  --hs-surface-raised: #252530;
+  --hs-surface-border: rgba(255, 255, 255, 0.12);
+  --hs-input-bg: #1a1a22;
+  --hs-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  --hs-hub-bg: linear-gradient(
+    128deg,
+    #1a1a22 0%,
+    #2d1f4e 38%,
+    #0a4a52 72%,
+    #152a24 100%
+  );
+}
+
+html[data-hitsave-theme="light"] {
+  --hs-teal-dark: #00a1ba;
+  --hs-header-search-bg: #ffffff;
+  --hs-header-search-border: #d4d4dc;
+  --hs-header-search-fg: #1a1a22;
+  --hs-header-search-placeholder: #5c5c6a;
+  --hs-bar-bg: #ffffff;
+  --hs-footer-bg: #ececef;
+  --hs-bar-fg: #1a1a22;
+  --hs-bar-muted: #5c5c6a;
+  --hs-content-bg: #f4f4f4;
+  --hs-content-fg: #1a1a22;
+  --hs-content-muted: #5c5c6a;
+  --hs-surface: #ffffff;
+  --hs-surface-raised: #ffffff;
+  --hs-surface-border: #d4d4dc;
+  --hs-input-bg: #ffffff;
+  --hs-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --hs-hub-bg: linear-gradient(
+    128deg,
+    #2a2a34 0%,
+    #4a3570 38%,
+    #0d5c66 72%,
+    #1e4038 100%
+  );
+}
+
+html[data-hitsave-theme="light"] .hitsave-site-chrome {
+  border-bottom: 1px solid var(--hs-surface-border);
+}
+
+html[data-hitsave-theme="light"] .hitsave-site-chrome .hitsave-family-bar {
+  border-bottom-color: var(--hs-surface-border);
+}
+
+html[data-hitsave-theme="light"] .hitsave-family-bar a {
+  color: var(--hs-bar-muted);
+}
+
+html[data-hitsave-theme="light"] .hitsave-family-bar a:hover,
+html[data-hitsave-theme="light"] .hitsave-family-bar a:focus {
+  color: var(--hs-bar-fg);
+}
+
+html[data-hitsave-theme="light"] .hitsave-chrome .top-bar .menu a {
+  color: var(--hs-bar-fg);
+}
+
+/* —— Main content (browse, collections, items) —— */
+html[data-hitsave-theme="dark"] body.hitsave-chrome,
+html[data-hitsave-theme="dark"] body.hitsave-chrome #content {
+  background: var(--hs-content-bg);
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content a:not(.button):not(.hitsave-tile) {
+  color: var(--hs-teal);
+}
+
+html[data-hitsave-theme="dark"] #content h1,
+html[data-hitsave-theme="dark"] #content h2,
+html[data-hitsave-theme="dark"] #content h3,
+html[data-hitsave-theme="dark"] #content h4 {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content .description,
+html[data-hitsave-theme="dark"] #content .resource-meta,
+html[data-hitsave-theme="dark"] #content .block-html,
+html[data-hitsave-theme="dark"] #content .block-html p {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] .resources .resource {
+  background: var(--hs-surface);
+  border: 1px solid var(--hs-surface-border);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+
+html[data-hitsave-theme="dark"] .resources .resource h4 a {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] .resources .resource h4 a:hover {
+  color: var(--hs-teal);
+}
+
+html[data-hitsave-theme="dark"] .resource-values .value,
+html[data-hitsave-theme="dark"] .resource-property,
+html[data-hitsave-theme="dark"] .media-list,
+html[data-hitsave-theme="dark"] .full-width-main,
+html[data-hitsave-theme="dark"] .main-with-sidebar {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] .hitsave-citation {
+  background: var(--hs-surface);
+  border-color: var(--hs-surface-border);
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] .hitsave-citation dt {
+  color: var(--hs-content-muted);
+}
+
+html[data-hitsave-theme="dark"] .hitsave-citation dd {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content input,
+html[data-hitsave-theme="dark"] #content select,
+html[data-hitsave-theme="dark"] #content textarea,
+html[data-hitsave-theme="dark"] .browse-controls select,
+html[data-hitsave-theme="dark"] .browse-controls input {
+  background: var(--hs-input-bg);
+  color: var(--hs-content-fg);
+  border-color: var(--hs-surface-border);
+}
+
+html[data-hitsave-theme="dark"] .browse-controls.top {
+  background: var(--hs-surface);
+  border-color: var(--hs-surface-border);
+}
+
+html[data-hitsave-theme="dark"] .browse-controls a,
+html[data-hitsave-theme="dark"] .browse-controls .row-count,
+html[data-hitsave-theme="dark"] .browse-controls .page-count {
+  color: var(--hs-content-muted);
+}
+
+html[data-hitsave-theme="dark"] .breadcrumbs,
+html[data-hitsave-theme="dark"] .sub-menu {
+  color: var(--hs-content-muted);
+}
+
+html[data-hitsave-theme="dark"] .breadcrumbs a {
+  color: var(--hs-teal);
+}
+
+html[data-hitsave-theme="dark"] body.hitsave-homepage.hitsave-chrome {
+  background: var(--hs-content-bg);
+}
+
+/* —— Dark mode readability (Foundation + Omeka + DIP defaults) —— */
+html[data-hitsave-theme="dark"] body.hitsave-chrome #content {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content .blocks,
+html[data-hitsave-theme="dark"] #content .blocks-inner,
+html[data-hitsave-theme="dark"] #content .stack,
+html[data-hitsave-theme="dark"] #content .grid-x {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content .resource-title,
+html[data-hitsave-theme="dark"] #content .resource-title .label,
+html[data-hitsave-theme="dark"] #content h2 .title,
+html[data-hitsave-theme="dark"] #content .block-pageTitle h2,
+html[data-hitsave-theme="dark"] #content .property,
+html[data-hitsave-theme="dark"] #content .property dt,
+html[data-hitsave-theme="dark"] #content .property dd,
+html[data-hitsave-theme="dark"] #content .values,
+html[data-hitsave-theme="dark"] #content .value,
+html[data-hitsave-theme="dark"] #content .resource-property,
+html[data-hitsave-theme="dark"] #content .resource-class,
+html[data-hitsave-theme="dark"] #content .item-sets,
+html[data-hitsave-theme="dark"] #content .media-list,
+html[data-hitsave-theme="dark"] #content .media-list dd,
+html[data-hitsave-theme="dark"] #content .sidebar,
+html[data-hitsave-theme="dark"] #content .left-sidebar,
+html[data-hitsave-theme="dark"] #content .right-sidebar,
+html[data-hitsave-theme="dark"] #content .full-width-main,
+html[data-hitsave-theme="dark"] #content .main-with-sidebar,
+html[data-hitsave-theme="dark"] #content .preview-block,
+html[data-hitsave-theme="dark"] #content table,
+html[data-hitsave-theme="dark"] #content th,
+html[data-hitsave-theme="dark"] #content td,
+html[data-hitsave-theme="dark"] #content figcaption,
+html[data-hitsave-theme="dark"] #content .col-sm-8,
+html[data-hitsave-theme="dark"] #content .omeka-dip-resource-media-list,
+html[data-hitsave-theme="dark"] #content .omeka-dip-package,
+html[data-hitsave-theme="dark"] #content .omeka-dip-package__contents,
+html[data-hitsave-theme="dark"] #content .omeka-dip-folder-name,
+html[data-hitsave-theme="dark"] #content .omeka-dip-video-note,
+html[data-hitsave-theme="dark"] #content .omeka-dip-video-caption,
+html[data-hitsave-theme="dark"] #content .omeka-dip-warning {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content .property dt,
+html[data-hitsave-theme="dark"] #content .resource-title .label,
+html[data-hitsave-theme="dark"] #content .omeka-dip-size,
+html[data-hitsave-theme="dark"] #content .description,
+html[data-hitsave-theme="dark"] #content .resource-meta .description {
+  color: var(--hs-content-muted);
+}
+
+html[data-hitsave-theme="dark"] #content a:not(.button) {
+  color: var(--hs-teal);
+}
+
+html[data-hitsave-theme="dark"] #content a:not(.button):hover,
+html[data-hitsave-theme="dark"] #content a:not(.button):focus {
+  color: var(--hs-link-hover);
+}
+
+html[data-hitsave-theme="dark"] #content .resources .resource h4 a {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content .resources .resource h4 a:hover,
+html[data-hitsave-theme="dark"] #content .resources .resource h4 a:focus {
+  color: var(--hs-teal);
+}
+
+html[data-hitsave-theme="dark"] #content .button,
+html[data-hitsave-theme="dark"] #content button.button,
+html[data-hitsave-theme="dark"] .omeka-pagination .button:not([disabled]) {
+  background: var(--hs-teal);
+  color: #0d1a1a;
+  border-color: transparent;
+}
+
+html[data-hitsave-theme="dark"] .omeka-pagination .button[disabled],
+html[data-hitsave-theme="dark"] #content .button.disabled {
+  background: var(--hs-surface);
+  color: var(--hs-content-muted);
+  opacity: 1;
+}
+
+html[data-hitsave-theme="dark"] .advanced-search {
+  color: var(--hs-teal);
+}
+
+html[data-hitsave-theme="dark"] .browse-control-mobile .browse-toggle {
+  background: var(--hs-surface);
+  color: var(--hs-content-fg);
+  border: 1px solid var(--hs-surface-border);
+}
+
+html[data-hitsave-theme="dark"] #content ::placeholder {
+  color: var(--hs-content-muted);
+  opacity: 1;
+}
+
+html[data-hitsave-theme="dark"] #content .break.opaque,
+html[data-hitsave-theme="dark"] #content hr {
+  border-color: var(--hs-surface-border);
+  background-color: var(--hs-surface-border);
+}
+
+html[data-hitsave-theme="dark"] body.item.resource.show.omeka-dip-item-layout .right-sidebar.omeka-dip-package-pane {
+  border-left-color: var(--hs-surface-border);
+  border-top-color: var(--hs-surface-border);
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content .omeka-dip-file-list,
+html[data-hitsave-theme="dark"] #content .omeka-dip-tree {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content [style*="background:#eee"],
+html[data-hitsave-theme="dark"] #content [style*="background: #eee"],
+html[data-hitsave-theme="dark"] #content [style*="background:#eeeeee"],
+html[data-hitsave-theme="dark"] #content [style*="background: #eeeeee"],
+html[data-hitsave-theme="dark"] #content [style*="background:#f8f8f8"],
+html[data-hitsave-theme="dark"] #content [style*="background: #f8f8f8"] {
+  background: var(--hs-surface) !important;
+  color: var(--hs-content-fg) !important;
+  border-color: var(--hs-surface-border) !important;
+}
+
+html[data-hitsave-theme="dark"] #content [style*="color:#333"],
+html[data-hitsave-theme="dark"] #content [style*="color: #333"],
+html[data-hitsave-theme="dark"] #content [style*="color:#666"],
+html[data-hitsave-theme="dark"] #content [style*="color: #666"] {
+  color: var(--hs-content-fg) !important;
+}
+
+/* Light mode content uses Foundation defaults; ensure surfaces match. */
+html[data-hitsave-theme="light"] body.hitsave-chrome #content {
+  background: var(--hs-content-bg);
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="light"] .hitsave-citation {
+  background: var(--hs-surface);
+  border-color: var(--hs-surface-border);
+}
+
+html[data-hitsave-theme="light"] .browse-controls.top {
+  background: var(--hs-surface);
+  border: 1px solid var(--hs-surface-border);
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="light"] .resources .resource {
+  background: var(--hs-surface);
+  border: 1px solid var(--hs-surface-border);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+
+html[data-hitsave-theme="light"] .resources .resource h4 a,
+html[data-hitsave-theme="light"] .resources .resource .resource-name {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="light"] .resources .resource h4 a:hover,
+html[data-hitsave-theme="light"] .resources .resource h4 a:focus {
+  color: var(--hs-teal-dark, #00a1ba);
+}
+
+html[data-hitsave-theme="light"] #content .preview-block .description,
+html[data-hitsave-theme="light"] #content .resource-meta .description {
+  color: var(--hs-content-muted);
+}
+
+/* —— Content typography (items, browse, inner pages; hub keeps its own scale) —— */
+body.hitsave-chrome:not(.hitsave-homepage) {
+  --hs-type-body: 1.125rem;
+  --hs-type-leading: 1.6;
+  --hs-type-ui: 1rem;
+}
+
+body.hitsave-chrome:not(.hitsave-homepage) #content {
+  font-size: var(--hs-type-body);
+  line-height: var(--hs-type-leading);
+}
+
+body.hitsave-chrome:not(.hitsave-homepage) #content .property dt,
+body.hitsave-chrome:not(.hitsave-homepage) #content .resource-title .label,
+body.hitsave-chrome:not(.hitsave-homepage) #content .resource-meta .description,
+body.hitsave-chrome:not(.hitsave-homepage) #content .hitsave-citation dt {
+  font-size: var(--hs-type-body);
+  line-height: var(--hs-type-leading);
+  font-weight: 700;
+}
+
+body.hitsave-chrome:not(.hitsave-homepage) #content .property dd,
+body.hitsave-chrome:not(.hitsave-homepage) #content .values,
+body.hitsave-chrome:not(.hitsave-homepage) #content .value,
+body.hitsave-chrome:not(.hitsave-homepage) #content .description,
+body.hitsave-chrome:not(.hitsave-homepage) #content .resource-meta,
+body.hitsave-chrome:not(.hitsave-homepage) #content .media-list,
+body.hitsave-chrome:not(.hitsave-homepage) #content .media-list dd,
+body.hitsave-chrome:not(.hitsave-homepage) #content .hitsave-citation dd {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+body.hitsave-chrome:not(.hitsave-homepage) #content .value .language {
+  font-size: var(--hs-type-ui);
+  line-height: 1.45;
+}
+
+body.hitsave-chrome:not(.hitsave-homepage) .breadcrumbs,
+body.hitsave-chrome:not(.hitsave-homepage) .sub-menu,
+body.hitsave-chrome:not(.hitsave-homepage) .browse-controls .row-count,
+body.hitsave-chrome:not(.hitsave-homepage) .browse-controls .page-count,
+body.hitsave-chrome:not(.hitsave-homepage) .browse-controls a,
+body.hitsave-chrome:not(.hitsave-homepage) .browse-controls button,
+body.hitsave-chrome:not(.hitsave-homepage) .browse-controls .button {
+  font-size: var(--hs-type-ui);
+  line-height: 1.45;
+}
+
+body.hitsave-chrome:not(.hitsave-homepage) #content .omeka-dip-file-list,
+body.hitsave-chrome:not(.hitsave-homepage) #content .omeka-dip-tree,
+body.hitsave-chrome:not(.hitsave-homepage) #content .omeka-dip-folder-name,
+body.hitsave-chrome:not(.hitsave-homepage) #content .omeka-dip-video-note,
+body.hitsave-chrome:not(.hitsave-homepage) #content .omeka-dip-video-caption,
+body.hitsave-chrome:not(.hitsave-homepage) #content .omeka-dip-size,
+body.hitsave-chrome:not(.hitsave-homepage) #content .omeka-dip-package,
+body.hitsave-chrome:not(.hitsave-homepage) #content .omeka-dip-package__contents {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Theme toggle (single icon: sun → light, moon → dark) */
+.hitsave-theme-toggle {
+  display: inline-flex;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.hitsave-family-bar__inner .hitsave-theme-toggle {
+  margin-left: auto;
+}
+
+.hitsave-family-bar__support {
+  margin-left: 0;
+}
+
+.hitsave-theme-toggle__btn--icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--hs-bar-fg);
+  cursor: pointer;
+  line-height: 1;
+}
+
+html[data-hitsave-theme="light"] .hitsave-theme-toggle__btn--icon {
+  border-color: var(--hs-surface-border);
+  background: var(--hs-input-bg);
+  color: var(--hs-bar-fg);
+}
+
+.hitsave-theme-toggle__icon {
+  font-size: 1.05rem;
+  pointer-events: none;
+}
+
+.hitsave-theme-toggle__btn--icon:hover,
+.hitsave-theme-toggle__btn--icon:focus {
+  color: var(--hs-teal);
+  border-color: rgba(0, 190, 193, 0.45);
+  outline: none;
+}
+
+.hitsave-theme-toggle__btn--icon:focus-visible {
+  box-shadow: 0 0 0 2px rgba(0, 190, 193, 0.35);
+}
+
+@media screen and (max-width: 639px) {
+  .hitsave-family-bar__inner {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 0.45rem 0.65rem;
+    padding: 0.5rem 0.75rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .hitsave-family-bar__inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hitsave-family-bar__sep {
+    display: none;
+  }
+
+  .hitsave-family-bar__inner a,
+  .hitsave-family-bar__archive {
+    white-space: nowrap;
+    font-size: 0.8125rem;
+  }
+
+  .hitsave-wordmark--chrome {
+    max-height: 1.45rem;
+    max-width: 5.25rem;
+  }
+
+  .hitsave-family-bar__inner .hitsave-theme-toggle {
+    order: unset;
+    width: auto;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .hitsave-family-bar__support {
+    width: auto;
+    margin-left: 0;
+  }
+}

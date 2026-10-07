@@ -1,0 +1,20 @@
+<?php
+$translate = $this->plugin('translate');
+$escapeAttr = $this->plugin('escapeHtmlAttr');
+$labelToLight = $escapeAttr($translate('Switch to light mode'));
+$labelToDark = $escapeAttr($translate('Switch to dark mode'));
+?>
+<div
+    class="hitsave-theme-toggle"
+    data-hitsave-label-to-light="<?php echo $labelToLight; ?>"
+    data-hitsave-label-to-dark="<?php echo $labelToDark; ?>"
+>
+    <button
+        type="button"
+        class="hitsave-theme-toggle__btn hitsave-theme-toggle__btn--icon"
+        data-hitsave-theme-toggle
+        aria-label="<?php echo $labelToLight; ?>"
+    >
+        <i class="fas fa-sun hitsave-theme-toggle__icon" aria-hidden="true"></i>
+    </button>
+</div>

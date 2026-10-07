@@ -1,0 +1,23 @@
+<?php
+$escape = $this->plugin('escapeHtml');
+?>
+<header class="hitsave-site-chrome">
+    <?php echo $this->partial('common/hitsave-family-bar', ['site' => $site]); ?>
+    <div class="hitsave-primary-bar">
+        <div class="top-bar hitsave-top-bar grid-container">
+            <nav class="top-bar-left" aria-label="<?php echo $this->translate('Mobile navigation'); ?>">
+                <div class="hitsave-nav-dropdown">
+                    <div class="title-bar hitsave-menu-toggle">
+                        <button class="menu-toggle hitsave-nav-toggle" type="button" aria-label="<?php echo $this->translate('Site menu'); ?>"><i class="fas fa-bars hitsave-nav-toggle__icon" aria-hidden="true"></i></button>
+                    </div>
+                    <?php echo $this->partial('common/hitsave-nav-panel', ['site' => $site]); ?>
+                </div>
+            </nav>
+            <div class="top-bar-right hitsave-top-bar-right" id="responsive-menu">
+                <div class="search hitsave-header-search">
+                    <?php echo $this->partial('common/search-form'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

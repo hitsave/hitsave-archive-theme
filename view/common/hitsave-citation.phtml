@@ -1,0 +1,45 @@
+<?php
+$item = $vars['item'] ?? null;
+if (!$item) {
+    return;
+}
+$escape = $this->plugin('escapeHtml');
+$translate = $this->plugin('translate');
+$ark = null;
+foreach ($item->value('dcterms:identifier', ['all' => true]) as $value) {
+    $v = (string) $value->value();
+    if (str_starts_with($v, 'ark:/') || str_starts_with($v, 'ark:')) {
+        $ark = $v;
+        break;
+    }
+}
+if (!$ark) {
+    return;
+}
+if (!str_starts_with($ark, 'ark:/')) {
+    $ark = preg_replace('#^ark:#', 'ark:/', $ark, 1);
+}
+$permalink = $item->siteUrl();
+$filterLocale = (bool) $this->siteSetting('filter_locale_values');
+$lang = $this->lang();
+$valueLang = $filterLocale ? [$lang, ''] : null;
+$title = $item->displayTitle(null, $valueLang);
+$citation = sprintf(
+    '%s. Hit Save! Archive. %s',
+    $title,
+    $ark
+);
+?>
+<aside class="hitsave-citation" aria-labelledby="hitsave-citation-heading">
+    <h4 id="hitsave-citation-heading"><?php echo $translate('Cite this record'); ?></h4>
+    <dl>
+        <dt><?php echo $translate('ARK'); ?></dt>
+        <dd><?php echo $escape($ark); ?></dd>
+        <?php if ($permalink): ?>
+        <dt><?php echo $translate('Permalink'); ?></dt>
+        <dd><a href="<?php echo $escape($permalink); ?>"><?php echo $escape($permalink); ?></a></dd>
+        <?php endif; ?>
+        <dt><?php echo $translate('Suggested citation'); ?></dt>
+        <dd><?php echo $escape($citation); ?></dd>
+    </dl>
+</aside>

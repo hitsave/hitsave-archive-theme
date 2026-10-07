@@ -1,0 +1,9 @@
+<?php
+$escape = $this->plugin('escapeHtml');
+?>
+<div id="hitsave-nav-panel" class="hitsave-nav-panel" aria-hidden="true">
+    <div class="hitsave-nav-panel__inner">
+        <p class="hitsave-nav-panel__heading"><?php echo $escape($this->translate('Site menu')); ?></p>
+        <?php echo $site->publicNav()->menu()->setPartial('common/foundation-navigation.phtml')->renderPartialWithParams(['layout' => 'vertical']); ?>
+    </div>
+</div>
