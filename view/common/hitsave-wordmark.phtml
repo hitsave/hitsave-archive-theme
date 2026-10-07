@@ -3,14 +3,8 @@ $escape = $this->plugin('escapeHtml');
 $href = $vars['href'] ?? ($this->themeSetting('hitsave_org_url') ?: 'https://hitsave.org');
 $class = $vars['class'] ?? 'hitsave-wordmark';
 $linkClass = $vars['linkClass'] ?? 'hitsave-wordmark-link';
-$logoUrl = $this->themeSetting('hitsave_logo_url');
-$useOverride = is_string($logoUrl)
-    && $logoUrl !== ''
-    && preg_match('#^(https?://|/)#', $logoUrl);
-$src = $useOverride
-    ? $logoUrl
-    : $this->assetUrl('img/hit-save-wordmark.png');
+$src = $this->assetUrl('img/hit-save-wordmark.png');
 ?>
 <a class="<?php echo $escape($linkClass); ?>" href="<?php echo $escape($href); ?>">
-    <img class="<?php echo $escape($class); ?>" src="<?php echo $escape($src); ?>" width="160" height="62" alt="<?php echo $escape($this->translate('Hit Save!')); ?>">
+    <img class="<?php echo $escape($class); ?>" src="<?php echo $escape($src); ?>" width="160" height="62" alt="<?php echo $escape($this->translate('Hit Save!')); ?>" decoding="async">
 </a>
