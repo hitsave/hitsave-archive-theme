@@ -64,4 +64,4 @@ The Omeka **`theme.ini` `version`** field stays aligned with **Foundation S’s 
 
 ## License
 
-GPL-3.0-or-later (combined with Foundation S). See [COPYING.md](COPYING.md).
+**GNU GPL v3.0 or later** — see [LICENSE](LICENSE). This overlay is combined with [Foundation S](https://github.com/omeka-s-themes/foundation) at build time; attribution and redistribution: [COPYING.md](COPYING.md).

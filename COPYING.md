@@ -23,4 +23,4 @@ If you ship the built theme (or a Docker image containing it), you should:
 2. Provide **corresponding source** for the combined theme (Foundation pin + this overlay + build script).
 3. Keep **copyright and attribution** notices for Omeka Team / Foundation S and Hit Save! overlay changes.
 
-Full GPL text: https://www.gnu.org/licenses/gpl-3.0.txt
+Full GPL text: [LICENSE](LICENSE) in this repository (or https://www.gnu.org/licenses/gpl-3.0.txt).
