@@ -28,4 +28,4 @@ discovery_tiles:
     path: page/press-material
   - label: VHS tapes
     hint: Full-text search
-    path: item?fulltext_search=VHS
+    path: index/search?fulltext_search=VHS

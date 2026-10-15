@@ -1,0 +1,27 @@
+<?php
+/**
+ * Preserve GET query in browse/search forms when params()->fromQuery() is not an array (PHP-FPM edge case).
+ *
+ * @var array<int, string> $removeQueries
+ */
+$removeQueries = $removeQueries ?? [];
+$query = $this->params()->fromQuery();
+if (!is_array($query)) {
+    $query = [];
+}
+foreach ($query as $queryName => $queryValue) {
+    if (in_array($queryName, $removeQueries, true)) {
+        continue;
+    }
+    if (is_array($queryValue)) {
+        continue;
+    }
+    if ($queryValue === null || $queryValue === '') {
+        continue;
+    }
+    echo sprintf(
+        '<input type="hidden" name="%s" value="%s">',
+        $this->escapeHtml((string) $queryName),
+        $this->escapeHtml((string) $queryValue)
+    );
+}

@@ -774,6 +774,18 @@ body.hitsave-homepage .hitsave-site-footer {
   margin-bottom: 0;
 }
 
+/* Dump catalog browse: alternative titles above description snippet */
+body.hitsave-chrome.resource.browse .resource-meta .alternative-title {
+  margin-top: 0.35rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  opacity: 0.92;
+}
+
+body.hitsave-chrome.resource.browse .resource-meta .alternative-title + .description {
+  margin-top: 0.35rem;
+}
+
 /* Browse grids: cap item descriptions (Foundation "ellipsis" = 4 lines + …) */
 body.hitsave-chrome.resource.browse .resource-meta .description.ellipsis,
 body.hitsave-chrome .preview-block .resource-meta .description.ellipsis {

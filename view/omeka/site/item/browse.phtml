@@ -118,6 +118,10 @@ $sortHeadings = [
 foreach ($items as $item):
     $heading = $headingTerm ? $item->value($headingTerm, ['default' => $translate('[Untitled]'), 'lang' => $valueLang]) : $item->displayTitle(null, $valueLang);
     $body = $bodyTerm ? $item->value($bodyTerm, ['lang' => $valueLang]) : $item->displayDescription(null, $valueLang);
+    $dumpCatalog = !$item->primaryMedia() && count($item->value('bibo:uri', ['all' => true]) ?: []) > 0;
+    $alternativeValues = $dumpCatalog
+        ? $item->value('dcterms:alternative', ['all' => true, 'lang' => $valueLang])
+        : [];
 ?>
     <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
         <div class="resource-meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
@@ -127,6 +131,13 @@ foreach ($items as $item):
                 $escape($heading));
             echo $item->linkRaw($linkContent, null, ['class' => 'resource-link']);
             ?>
+            <?php if ($alternativeValues): ?>
+            <div class="alternative-title">
+                <?php foreach ($alternativeValues as $altValue): ?>
+                <div class="alternative-title__line"><?php echo $filterLocale ? $altValue->asHtml($lang) : $altValue->asHtml(); ?></div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
             <?php if ($body): ?>
             <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
             <?php endif; ?>
