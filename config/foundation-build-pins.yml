@@ -1,0 +1,8 @@
+# Foundation S bases built by GitHub Actions (one zip per pin + HitSaveArchive-latest.zip).
+# deploy.latest_foundation_ref must match FOUNDATION_S_GIT_REF at repo root (prod pin).
+deploy:
+  latest_foundation_ref: v1.5.3
+
+foundation_pins:
+  - ref: v1.5.3
+    version: "1.5.3"

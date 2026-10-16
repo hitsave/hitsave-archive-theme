@@ -1,0 +1,82 @@
+name: build-theme
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "asset/**"
+      - "config/**"
+      - "view/**"
+      - "FOUNDATION_S_GIT_REF"
+      - "scripts/**"
+      - ".github/workflows/build-theme.yml"
+  pull_request:
+    paths:
+      - "asset/**"
+      - "config/**"
+      - "view/**"
+      - "FOUNDATION_S_GIT_REF"
+      - "scripts/**"
+      - ".github/workflows/build-theme.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build deps
+        run: pip install pyyaml
+
+      - name: Validate Foundation pins
+        run: ./scripts/ci/validate-foundation-pins.sh
+
+      - name: Build theme zips
+        run: ./scripts/ci/build-all-theme-zips.sh
+
+      - name: Upload theme-builds artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-builds
+          path: dist/*.zip
+          if-no-files-found: error
+
+  release-latest:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: theme-builds
+          path: dist
+
+      - name: Publish GitHub Release assets (latest + per-Foundation)
+        uses: ncipollo/release-action@v1
+        with:
+          tag: latest-build
+          name: HitSaveArchive latest (prod deploy)
+          body: |
+            Rolling production build from `main`. Unzip into Omeka `themes/` (contains `HitSaveArchive/`).
+
+            - **HitSaveArchive-latest.zip** — matches `deploy.latest_foundation_ref` in [foundation-build-pins.yml](config/foundation-build-pins.yml).
+            - **HitSaveArchive-foundation-*.zip** — same overlay pinned to each supported Foundation S release.
+
+            Overlay commit: ${{ github.sha }}
+          artifacts: dist/*.zip
+          allowUpdates: true
+          replacesArtifacts: true
+          makeLatest: true
+          token: ${{ secrets.GITHUB_TOKEN }}

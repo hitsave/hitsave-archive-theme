@@ -39,7 +39,9 @@ if [ ! -f "$THEME_INI" ]; then
 fi
 
 FOUNDATION_REF=""
-if [ -f "$OVERLAY/FOUNDATION_S_GIT_REF" ]; then
+if [ -n "${HITSAVE_FOUNDATION_REF_OVERRIDE:-}" ]; then
+  FOUNDATION_REF="$(printf '%s' "$HITSAVE_FOUNDATION_REF_OVERRIDE" | tr -d ' \n\r')"
+elif [ -f "$OVERLAY/FOUNDATION_S_GIT_REF" ]; then
   FOUNDATION_REF="$(tr -d ' \n\r' <"$OVERLAY/FOUNDATION_S_GIT_REF")"
 fi
 

@@ -1,5 +1,7 @@
 # Local Foundation clone and merged theme output (build artifacts)
 foundation-theme/
 HitSaveArchive/
+build/
+dist/
 
 .cursor/

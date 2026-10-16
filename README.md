@@ -62,6 +62,27 @@ Optional default copy for theme settings (family URLs, homepage hero): [`example
 
 The Omeka **`theme.ini` `version`** field stays aligned with **Foundation S’s version** at the pin so admins can see which upstream base was used.
 
+## CI builds and production deploy
+
+GitHub Actions ([`.github/workflows/build-theme.yml`](.github/workflows/build-theme.yml)) builds installable zips on every **`main`** push (and on PRs that touch theme sources):
+
+| Artifact | Purpose |
+|---|---|
+| **`HitSaveArchive-latest.zip`** | Production deploy — overlay at `main` on the Foundation pin in [`config/foundation-build-pins.yml`](config/foundation-build-pins.yml) (`deploy.latest_foundation_ref`, must match **`FOUNDATION_S_GIT_REF`**) |
+| **`HitSaveArchive-foundation-<version>.zip`** | Stable line per supported Foundation S release (same overlay, different upstream base) |
+
+Each zip unpacks to a single **`HitSaveArchive/`** directory (copy into Omeka `themes/`). **`BUILD_INFO.json`** inside records Foundation ref, overlay git SHA, and build time.
+
+**Download:**
+
+- **Prod:** [GitHub Releases → `latest-build`](https://github.com/hitsave/hitsave-archive-theme/releases/tag/latest-build) → `HitSaveArchive-latest.zip` (updated on each green `main` build).
+- **CI run:** Actions → latest **build-theme** workflow → **theme-builds** artifact (all zips).
+
+**Add another Foundation base** (e.g. when testing `v1.6.0` while prod stays on `v1.5.3`):
+
+1. Append a pin under **`foundation_pins`** in `config/foundation-build-pins.yml`.
+2. When ready to ship prod on the new base, bump **`deploy.latest_foundation_ref`**, **`FOUNDATION_S_GIT_REF`**, and [`config/foundation-theme-upstream.yml`](config/foundation-theme-upstream.yml) together.
+
 ## License
 
 **GNU GPL v3.0 or later** — see [LICENSE](LICENSE). This overlay is combined with [Foundation S](https://github.com/omeka-s-themes/foundation) at build time; attribution and redistribution: [COPYING.md](COPYING.md).
