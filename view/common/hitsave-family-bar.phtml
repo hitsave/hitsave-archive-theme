@@ -5,19 +5,9 @@ $preserve = $this->themeSetting('hitsave_preserve_url') ?: 'https://preserve.gam
 $support = $this->themeSetting('hitsave_support_url') ?: 'https://hitsave.org/support-us/';
 $archiveLabel = $this->themeSetting('hitsave_archive_label') ?: 'The Archive';
 $archiveHome = trim((string) ($this->themeSetting('hitsave_archive_home_url') ?: ''));
-if ($archiveHome === '' && isset($site)) {
-    $archiveHome = rtrim((string) $site->url(), '/');
-}
-if ($archiveHome === '') {
-    $request = $this->getRequest();
-    if ($request && $request->getUri()->getHost() !== '') {
-        $uri = $request->getUri();
-        $archiveHome = $uri->getScheme() . '://' . $uri->getHost();
-        $port = $uri->getPort();
-        if ($port && !in_array($port, [80, 443], true)) {
-            $archiveHome .= ':' . $port;
-        }
-    }
+$siteForArchive = $site ?? $this->currentSite();
+if ($archiveHome === '' && $siteForArchive) {
+    $archiveHome = rtrim((string) $siteForArchive->url(), '/');
 }
 if ($archiveHome === '') {
     $archiveHome = 'https://archive.hitsave.org';
