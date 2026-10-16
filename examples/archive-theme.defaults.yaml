@@ -11,6 +11,7 @@ family:
   support_url: https://hitsave.org/support-us/
   get_involved_url: https://forms.gle/uwnWEPmyrpgiz3AGA
   archive_label: The Archive
+  archive_home_url: https://archive.hitsave.org
 
 browse:
   # Foundation theme setting: full | fadeout | ellipsis (4 lines)

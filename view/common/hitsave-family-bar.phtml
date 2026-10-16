@@ -4,7 +4,24 @@ $org = $this->themeSetting('hitsave_org_url') ?: 'https://hitsave.org';
 $preserve = $this->themeSetting('hitsave_preserve_url') ?: 'https://preserve.games';
 $support = $this->themeSetting('hitsave_support_url') ?: 'https://hitsave.org/support-us/';
 $archiveLabel = $this->themeSetting('hitsave_archive_label') ?: 'The Archive';
-$archiveHome = isset($site) ? $site->url() : '/';
+$archiveHome = trim((string) ($this->themeSetting('hitsave_archive_home_url') ?: ''));
+if ($archiveHome === '' && isset($site)) {
+    $archiveHome = rtrim((string) $site->url(), '/');
+}
+if ($archiveHome === '') {
+    $request = $this->getRequest();
+    if ($request && $request->getUri()->getHost() !== '') {
+        $uri = $request->getUri();
+        $archiveHome = $uri->getScheme() . '://' . $uri->getHost();
+        $port = $uri->getPort();
+        if ($port && !in_array($port, [80, 443], true)) {
+            $archiveHome .= ':' . $port;
+        }
+    }
+}
+if ($archiveHome === '') {
+    $archiveHome = 'https://archive.hitsave.org';
+}
 ?>
 <nav class="hitsave-family-bar" aria-label="<?php echo $escape($this->translate('Hit Save family sites')); ?>">
     <div class="hitsave-family-bar__inner grid-container">
