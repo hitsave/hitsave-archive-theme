@@ -13,9 +13,17 @@ $filterLocaleCallback = function ($value) use ($lang) {
     return $valueLang == '' || strcasecmp($valueLang, $lang) === 0;
 };
 
+// Omeka passes property lists as arrays; some modules / PHP 8.4 reject count() on iterators.
+if ($values instanceof \Traversable && !is_array($values)) {
+    $values = iterator_to_array($values);
+}
+
 // Dump catalog items (metadata-only, Wasabi bibo:uri): show Alternative Title before Description.
 if (isset($resource) && $resource instanceof \Omeka\Api\Representation\ItemRepresentation) {
     $biboValues = $resource->value('bibo:uri', ['all' => true]) ?: [];
+    if ($biboValues instanceof \Traversable && !is_array($biboValues)) {
+        $biboValues = iterator_to_array($biboValues);
+    }
     $dumpCatalog = !$resource->primaryMedia() && count($biboValues) > 0;
     if ($dumpCatalog && isset($values['dcterms:alternative'], $values['dcterms:description'])) {
         $reordered = [];
@@ -38,6 +46,9 @@ if (isset($resource) && $resource instanceof \Omeka\Api\Representation\ItemRepre
 <?php
 foreach ($values as $term => $propertyData):
     $propertyValues = $propertyData['values'];
+    if ($propertyValues instanceof \Traversable && !is_array($propertyValues)) {
+        $propertyValues = iterator_to_array($propertyValues);
+    }
     if ($filterLocale) {
         $propertyValues = array_filter($propertyValues, $filterLocaleCallback);
     }
