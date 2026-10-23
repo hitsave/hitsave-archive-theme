@@ -49,6 +49,7 @@ $bannerPosition = ($this->themeSetting('banner_position')) ? str_replace('_','-'
         (function(){try{var k='hitsave-theme';var s=localStorage.getItem(k);var d=document.documentElement;var def=d.getAttribute('data-hitsave-theme-default')||'dark';if(s==='dark'||s==='light'){d.setAttribute('data-hitsave-theme',s);}else{d.setAttribute('data-hitsave-theme',def);}}catch(e){}}());
         </script>
         <?php echo $this->headMeta(); ?>
+        <?php echo $this->placeholder('hitsaveSocialMeta'); ?>
         <?php echo $this->headTitle(); ?>
         <?php echo $this->headLink(); ?>
         <?php echo $this->headStyle(); ?>

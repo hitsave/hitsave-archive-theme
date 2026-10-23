@@ -1,6 +1,9 @@
 <?php
 /**
- * Open Graph + Twitter Card tags for link unfurling (Discord, Slack, etc.).
+ * Open Graph + Twitter Card tags for link unfurling (Discord, Slack, tryunfurl, etc.).
+ *
+ * Laminas HeadMeta HTML-escapes colons in property/name keys (og&#x3A;title), which
+ * many crawlers ignore. Emit literal og:/twitter: attributes; escape content only.
  *
  * Pass: title (required), description, url, image, type, site_name.
  */
@@ -15,26 +18,36 @@ $image = trim((string) ($image ?? ''));
 $type = (string) ($type ?? 'website');
 $siteName = trim((string) ($site_name ?? ''));
 
-$this->headMeta()->appendProperty('og:title', $title);
-$this->headMeta()->appendProperty('og:type', $type);
+$esc = $this->plugin('escapeHtmlAttr');
+$og = static function (string $property, string $content) use ($esc): string {
+    return '<meta property="' . $property . '" content="' . $esc($content) . '">' . "\n";
+};
+$tw = static function (string $name, string $content) use ($esc): string {
+    return '<meta name="' . $name . '" content="' . $esc($content) . '">' . "\n";
+};
+
+$tags = $og('og:title', $title);
+$tags .= $og('og:type', $type);
 if ($siteName !== '') {
-    $this->headMeta()->appendProperty('og:site_name', $siteName);
+    $tags .= $og('og:site_name', $siteName);
 }
 if ($description !== '') {
-    $this->headMeta()->appendProperty('og:description', $description);
+    $tags .= $og('og:description', $description);
 }
 if ($url !== '') {
-    $this->headMeta()->appendProperty('og:url', $url);
+    $tags .= $og('og:url', $url);
 }
 if ($image !== '') {
-    $this->headMeta()->appendProperty('og:image', $image);
+    $tags .= $og('og:image', $image);
 }
 
-$this->headMeta()->appendName('twitter:card', $image !== '' ? 'summary_large_image' : 'summary');
-$this->headMeta()->appendName('twitter:title', $title);
+$tags .= $tw('twitter:card', $image !== '' ? 'summary_large_image' : 'summary');
+$tags .= $tw('twitter:title', $title);
 if ($description !== '') {
-    $this->headMeta()->appendName('twitter:description', $description);
+    $tags .= $tw('twitter:description', $description);
 }
 if ($image !== '') {
-    $this->headMeta()->appendName('twitter:image', $image);
+    $tags .= $tw('twitter:image', $image);
 }
+
+$this->placeholder('hitsaveSocialMeta')->append($tags);
