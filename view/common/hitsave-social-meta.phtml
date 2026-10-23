@@ -1,0 +1,40 @@
+<?php
+/**
+ * Open Graph + Twitter Card tags for link unfurling (Discord, Slack, etc.).
+ *
+ * Pass: title (required), description, url, image, type, site_name.
+ */
+$title = trim((string) ($title ?? ''));
+if ($title === '') {
+    return;
+}
+
+$description = trim((string) ($description ?? ''));
+$url = trim((string) ($url ?? ''));
+$image = trim((string) ($image ?? ''));
+$type = (string) ($type ?? 'website');
+$siteName = trim((string) ($site_name ?? ''));
+
+$this->headMeta()->appendProperty('og:title', $title);
+$this->headMeta()->appendProperty('og:type', $type);
+if ($siteName !== '') {
+    $this->headMeta()->appendProperty('og:site_name', $siteName);
+}
+if ($description !== '') {
+    $this->headMeta()->appendProperty('og:description', $description);
+}
+if ($url !== '') {
+    $this->headMeta()->appendProperty('og:url', $url);
+}
+if ($image !== '') {
+    $this->headMeta()->appendProperty('og:image', $image);
+}
+
+$this->headMeta()->appendName('twitter:card', $image !== '' ? 'summary_large_image' : 'summary');
+$this->headMeta()->appendName('twitter:title', $title);
+if ($description !== '') {
+    $this->headMeta()->appendName('twitter:description', $description);
+}
+if ($image !== '') {
+    $this->headMeta()->appendName('twitter:image', $image);
+}

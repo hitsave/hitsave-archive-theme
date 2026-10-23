@@ -1,0 +1,46 @@
+<?php
+if (empty($site)) {
+    return;
+}
+
+$origin = function (): string {
+    $parts = parse_url((string) $this->serverUrl(true));
+    $scheme = $parts['scheme'] ?? 'https';
+    $host = $parts['host'] ?? 'localhost';
+    $port = isset($parts['port']) ? ':' . $parts['port'] : '';
+
+    return $scheme . '://' . $host . $port;
+};
+
+$toAbsolute = function (string $pathOrUrl) use ($origin): string {
+    if ($pathOrUrl === '') {
+        return '';
+    }
+    if (preg_match('#^https?://#i', $pathOrUrl)) {
+        return $pathOrUrl;
+    }
+
+    return rtrim($origin(), '/') . '/' . ltrim($pathOrUrl, '/');
+};
+
+$heroTitle = $this->themeSetting('hitsave_hero_title') ?: 'Explore the collection';
+$heroTagline = $this->themeSetting('hitsave_hero_tagline')
+    ?: 'Search press kits, magazines, tapes, and other materials from our physical and digital vaults.';
+$hubSlug = $this->themeSetting('hitsave_homepage_slug') ?: 'intro';
+$homeUrl = $toAbsolute((string) $this->url(
+    'site/page',
+    ['site-slug' => $site->slug(), 'page-slug' => $hubSlug]
+));
+$bannerUrl = (string) ($this->themeSettingAssetUrl('banner') ?? '');
+$ogImage = $bannerUrl !== ''
+    ? $toAbsolute($bannerUrl)
+    : $toAbsolute((string) $this->assetUrl('img/hit-save-wordmark.png'));
+
+$this->partial('common/hitsave-social-meta', [
+    'title' => $heroTitle,
+    'description' => $heroTagline,
+    'url' => $homeUrl,
+    'image' => $ogImage,
+    'type' => 'website',
+    'site_name' => (string) $site->title(),
+]);

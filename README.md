@@ -34,6 +34,26 @@ Copy **`HitSaveArchive`** into your Omeka S `themes/` directory and activate **H
 
 The output folder name becomes the theme id Omeka sees (`HitSaveArchive`).
 
+### Sibling clone under `themes/` (mario / production)
+
+Git checkout next to the live Omeka theme directory:
+
+```text
+themes/HitSaveArchive/           ← Omeka reads this directory
+themes/hitsave-archive-theme/    ← git pull here
+```
+
+Build Foundation + overlay into `HitSaveArchive/` (this repo is untouched):
+
+```bash
+cd hitsave-archive-theme
+./scripts/install-into-parent-theme.sh
+```
+
+Custom theme folder name: `HITSAVE_OMEKA_THEME_DIR=HitSaveArchive ./scripts/install-into-parent-theme.sh`
+
+Then restart the Omeka container or PHP-FPM so OPcache picks up template changes.
+
 ## What the overlay changes
 
 **Replaced Foundation views (same path):**
@@ -42,7 +62,7 @@ The output folder name becomes the theme id Omeka sees (`HitSaveArchive`).
 - `view/omeka/site/item/browse.phtml`, `item/show.phtml`, `page/show.phtml`
 - `view/common/block-layout/browse-preview.phtml`
 
-**Added partials:** `hitsave-family-bar`, `hitsave-header-dropdown`, `hitsave-discovery-hub`, `hitsave-theme-toggle`, citation/footer/wordmark, etc.
+**Added partials:** `hitsave-family-bar`, `hitsave-header-dropdown`, `hitsave-discovery-hub`, `hitsave-theme-toggle`, citation/footer/wordmark, `hitsave-social-meta` (Open Graph / Twitter for link unfurling), etc.
 
 **Assets:** `asset/css/hitsave-archive.css`, `hitsave-theme-modes.css`, `asset/js/hitsave-site-nav.js`, `hitsave-theme-mode.js`.
 

@@ -19,6 +19,10 @@ if (!$isHomepage) {
     $this->pageTitle($page->title(), 2);
 }
 
+if ($isHomepage) {
+    $this->partial('common/hitsave-social-meta-homepage', ['site' => $site]);
+}
+
 $showPagePagination = $this->siteSetting('show_page_pagination', true);
 ?>
 
