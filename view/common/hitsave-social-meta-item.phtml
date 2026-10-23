@@ -27,13 +27,14 @@ $toAbsolute = function (string $pathOrUrl) use ($origin): string {
     return rtrim($origin(), '/') . '/' . ltrim($pathOrUrl, '/');
 };
 
+$isDefaultThumbnailUrl = static function (string $url): bool {
+    return str_contains($url, '/thumbnails/default.') || str_contains($url, 'default.png');
+};
+
 $title = (string) $item->displayTitle(null, $valueLang);
 
 $description = strip_tags((string) $item->displayDescription(null, $valueLang));
 $description = preg_replace('/\s+/u', ' ', trim($description)) ?? '';
-if (mb_strlen($description) > 300) {
-    $description = mb_substr($description, 0, 297) . '…';
-}
 
 $ark = null;
 foreach ($item->value('dcterms:identifier', ['all' => true]) as $value) {
@@ -53,6 +54,19 @@ if ($description === '') {
         : 'Press and marketing materials in the Hit Save! Archive.';
 }
 
+if (mb_strlen($description) < 120) {
+    $lead = rtrim($description, '.');
+    $description = sprintf(
+        '%s. Browse flyers, scans, and packaging from the Hit Save! Archive — volunteer-preserved game history.%s',
+        $lead,
+        $ark ? ' Cite as ' . $ark . '.' : ''
+    );
+}
+
+if (mb_strlen($description) > 300) {
+    $description = mb_substr($description, 0, 297) . '…';
+}
+
 if ($ark) {
     $ogUrl = $toAbsolute('/' . $ark);
 } else {
@@ -60,27 +74,31 @@ if ($ark) {
 }
 
 $ogImage = '';
-if ($item->thumbnail()) {
-    $thumbUrl = $item->thumbnailUrl('large');
-    if ($thumbUrl) {
-        $ogImage = $toAbsolute((string) $thumbUrl);
+
+foreach ($item->media() as $media) {
+    if ($media->renderer() === 'omeka_dip_package') {
+        $previewPath = $this->url(
+            'omeka-dip-browse-preview',
+            ['media_id' => (int) $media->id()],
+            ['query' => ['type' => 'large']]
+        );
+        $ogImage = $toAbsolute((string) $previewPath);
+        break;
+    }
+}
+
+if ($ogImage === '' && $item->thumbnail()) {
+    $thumbUrl = (string) $item->thumbnailUrl('large');
+    if ($thumbUrl !== '' && !$isDefaultThumbnailUrl($thumbUrl)) {
+        $ogImage = $toAbsolute($thumbUrl);
     }
 }
 
 if ($ogImage === '') {
     foreach ($item->media() as $media) {
-        $mediaThumb = $media->thumbnailUrl('large');
-        if ($mediaThumb) {
-            $ogImage = $toAbsolute((string) $mediaThumb);
-            break;
-        }
-        if ($media->renderer() === 'omeka_dip_package') {
-            $previewPath = $this->url(
-                'omeka-dip-browse-preview',
-                ['media_id' => (int) $media->id()],
-                ['query' => ['type' => 'large']]
-            );
-            $ogImage = $toAbsolute((string) $previewPath);
+        $mediaThumb = (string) $media->thumbnailUrl('large');
+        if ($mediaThumb !== '' && !$isDefaultThumbnailUrl($mediaThumb)) {
+            $ogImage = $toAbsolute($mediaThumb);
             break;
         }
     }

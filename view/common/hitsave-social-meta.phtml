@@ -3,7 +3,10 @@
  * Open Graph + Twitter Card tags for link unfurling (Discord, Slack, tryunfurl, etc.).
  *
  * Laminas HeadMeta HTML-escapes colons in property/name keys (og&#x3A;title), which
- * many crawlers ignore. Emit literal og:/twitter: attributes; escape content only.
+ * many crawlers ignore. Emit literal og:/twitter: attributes.
+ *
+ * Omeka escapeHtmlAttr encodes spaces and URL punctuation (&#x20;, &#x3A;); use
+ * standard htmlspecialchars for content= so unfurl parsers see plain text and URLs.
  *
  * Pass: title (required), description, url, image, type, site_name.
  */
@@ -18,7 +21,10 @@ $image = trim((string) ($image ?? ''));
 $type = (string) ($type ?? 'website');
 $siteName = trim((string) ($site_name ?? ''));
 
-$esc = $this->plugin('escapeHtmlAttr');
+$esc = static function (string $value): string {
+    return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+};
+
 $og = static function (string $property, string $content) use ($esc): string {
     return '<meta property="' . $property . '" content="' . $esc($content) . '">' . "\n";
 };
@@ -28,6 +34,7 @@ $tw = static function (string $name, string $content) use ($esc): string {
 
 $tags = $og('og:title', $title);
 $tags .= $og('og:type', $type);
+$tags .= $og('og:locale', 'en_US');
 if ($siteName !== '') {
     $tags .= $og('og:site_name', $siteName);
 }
