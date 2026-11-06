@@ -87,8 +87,9 @@ foreach ($item->media() as $media) {
     }
 }
 
-if ($ogImage === '' && $item->thumbnail()) {
-    $thumbUrl = (string) $item->thumbnailUrl('large');
+// A custom item thumbnail is an asset (AssetRepresentation): items have no thumbnailUrl().
+if ($ogImage === '' && ($thumbAsset = $item->thumbnail())) {
+    $thumbUrl = method_exists($thumbAsset, 'assetUrl') ? (string) $thumbAsset->assetUrl() : '';
     if ($thumbUrl !== '' && !$isDefaultThumbnailUrl($thumbUrl)) {
         $ogImage = $toAbsolute($thumbUrl);
     }
