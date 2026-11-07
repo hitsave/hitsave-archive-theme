@@ -75,7 +75,17 @@ if ($ark) {
 
 $ogImage = '';
 
-foreach ($item->media() as $media) {
+// The package preview the viewer shows in browse lists (OmekaDipViewer >= 0.5.22 picks the right
+// package, e.g. a data disc's contents, and has a fallback for sizes a package didn't pack).
+$helpers = $this->getHelperPluginManager();
+if ($helpers->has('dipBrowseThumbnail')) {
+    $dipThumb = $this->plugin('dipBrowseThumbnail');
+    if (method_exists($dipThumb, 'url')) {
+        $ogImage = $toAbsolute((string) ($dipThumb->url($item, 'large') ?? ''));
+    }
+}
+
+foreach ($ogImage === '' ? $item->media() : [] as $media) {
     if ($media->renderer() === 'omeka_dip_package') {
         $previewPath = $this->url(
             'omeka-dip-browse-preview',
