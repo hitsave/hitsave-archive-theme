@@ -505,3 +505,44 @@ html[data-hitsave-theme="light"] .hitsave-theme-toggle__btn--icon {
     margin-left: 0;
   }
 }
+
+/* —— Tables in page content (e.g. the Damaged files page) ——
+   Foundation gives tbody/thead light backgrounds and zebra rows; follow the mode instead. */
+html[data-hitsave-theme="dark"] #content table,
+html[data-hitsave-theme="dark"] #content table thead,
+html[data-hitsave-theme="dark"] #content table tbody,
+html[data-hitsave-theme="dark"] #content table tfoot {
+  background: var(--hs-surface);
+  border-color: var(--hs-surface-border);
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content table thead,
+html[data-hitsave-theme="dark"] #content table tfoot {
+  background: var(--hs-surface-raised);
+}
+
+html[data-hitsave-theme="dark"] #content table th {
+  color: var(--hs-content-fg);
+}
+
+html[data-hitsave-theme="dark"] #content table tbody tr,
+html[data-hitsave-theme="dark"] #content table tbody tr:nth-child(even) {
+  background: transparent;
+  border-bottom: 1px solid var(--hs-surface-border);
+}
+
+html[data-hitsave-theme="dark"] #content table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+html[data-hitsave-theme="dark"] #content table small {
+  color: var(--hs-content-muted);
+}
+
+/* —— Linked resources without a thumbnail (e.g. a tombstone's "Is Replaced By") ——
+   Omeka's default.png is a light square; dim and invert it so it doesn't glare. */
+html[data-hitsave-theme="dark"] #content .resource-link img[src$="/thumbnails/default.png"] {
+  filter: invert(0.88);
+  border-radius: 4px;
+}
