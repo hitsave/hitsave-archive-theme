@@ -18,14 +18,21 @@ if (isset($stylesheet)) {
 } else {
     $this->headLink()->appendStylesheet($this->assetUrl('css/default.css'));
 }
-$this->headLink()->appendStylesheet($this->assetUrl('css/hitsave-archive.css'));
-$this->headLink()->appendStylesheet($this->assetUrl('css/hitsave-theme-modes.css'));
+// Our own assets get a content hash in the URL as well as ?v=<theme version>: the version only
+// changes with Foundation, so without it Cloudflare and browsers keep old CSS/JS for hours.
+$hsAsset = function (string $path): string {
+    $url = $this->assetUrl($path);
+    $file = dirname(__DIR__, 2) . '/asset/' . $path;
+    return is_file($file) ? $url . (strpos($url, '?') === false ? '?' : '&') . 'h=' . substr(md5_file($file), 0, 10) : $url;
+};
+$this->headLink()->appendStylesheet($hsAsset('css/hitsave-archive.css'));
+$this->headLink()->appendStylesheet($hsAsset('css/hitsave-theme-modes.css'));
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/foundation/foundation.min.js'));
 $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
-$this->headScript()->appendFile($this->assetUrl('js/hitsave-site-nav.js'));
-$this->headScript()->appendFile($this->assetUrl('js/hitsave-theme-mode.js'));
+$this->headScript()->appendFile($hsAsset('js/hitsave-site-nav.js'));
+$this->headScript()->appendFile($hsAsset('js/hitsave-theme-mode.js'));
 $this->trigger('view.layout');
 $this->jsTranslate();
 $userBar = $this->userBar();
