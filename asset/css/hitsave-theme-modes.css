@@ -469,8 +469,8 @@ html[data-hitsave-theme="light"] .hitsave-theme-toggle__btn--icon {
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    gap: 0.45rem 0.65rem;
-    padding: 0.5rem 0.75rem;
+    gap: 0.45rem 0.6rem;
+    padding: 0.5rem 0 0.5rem 0.75rem;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -490,15 +490,27 @@ html[data-hitsave-theme="light"] .hitsave-theme-toggle__btn--icon {
   }
 
   .hitsave-wordmark--chrome {
-    max-height: 1.45rem;
-    max-width: 5.25rem;
+    max-height: 1.35rem;
+    max-width: 4.75rem;
   }
 
+  /* The links may scroll sideways on narrow phones; the toggle stays pinned at the right edge. */
   .hitsave-family-bar__inner .hitsave-theme-toggle {
     order: unset;
     width: auto;
     flex-shrink: 0;
     margin-left: auto;
+    position: sticky;
+    right: 0;
+    z-index: 1;
+    padding: 0 0.75rem 0 0.5rem;
+    background: var(--hs-bar-bg);
+    box-shadow: -0.75rem 0 0.75rem -0.25rem var(--hs-bar-bg);
+  }
+
+  .hitsave-family-bar__inner .hitsave-theme-toggle__btn--icon {
+    width: 2rem;
+    height: 2rem;
   }
 
   .hitsave-family-bar__support {
